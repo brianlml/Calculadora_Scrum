@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">	
+<title>Calculadora</title>
+<link type="text/css" rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+		<table class="calculadora">
+		<tr>
+			<td colspan="4"><input class="pantalla "id="lcd"></input></td>
+		</tr>
+		<tr>
+			<td><button onclick ="mostrar(7)" id="siete">7</button></td>
+			<td><button onclick ="mostrar(8)" id="ocho">8</button></td>
+			<td><button onclick ="mostrar(9)" id="nueve">9</button></td>
+			<td><button onclick ="obtenerOperador('division')" id="division">/</button></td>
+		</tr>
+		<tr>
+			<td><button onclick ="mostrar(4)" id="cuatro">4</button></td>
+			<td><button onclick ="mostrar(5)" id="cinco">5</button></td>
+			<td><button onclick ="mostrar(6)" id="seis">6</button></td>
+			<td><button onclick ="obtenerOperador('multiplicacion')" id="multiplicacion">*</button></td>
+		</tr>
+		<tr>
+			<td><button onclick ="mostrar(1)" id="uno">1</button></td>
+			<td><button onclick ="mostrar(2)" id="dos">2</button></td>
+			<td><button onclick ="mostrar(3)" id="tres">3</button></td>
+			<td><button onclick ="obtenerOperador('resta')" id="resta">-</button></td>
+		</tr>
+		<tr>
+			<td><button onclick ="calcular()" id="igual">=</button></td>
+			<td><button onclick ="borrarPantalla()" id="reset">C</button></td>
+			<td><button onclick ="mostrar(0)" id="cero">0</button></td>
+			<td><button onclick ="obtenerOperador('suma')" id="suma">+</button></td>
+		</tr>
+		</table>
+	
+<script >
+        var pantalla = '';
+        var resultado = 0;
+        var operador = '';
+        var numero1 = 0;
+        var numero2 = 0;
+
+        function mostrar(valor) {
+            pantalla = pantalla + valor;
+            document.getElementById('lcd').value = pantalla;
+        }
+        function obtenerOperador(operacion){
+            numero1 = document.getElementById('lcd').value;
+            operador = operacion;
+            document.getElementById('lcd').value = '';
+            pantalla = '';
+        }
+
+
+        function mostrar(valor) {
+            pantalla = pantalla + valor;
+            document.getElementById('lcd').value = pantalla;
+        }
+        function obtenerOperador(operacion){
+            numero1 = document.getElementById('lcd').value;
+            operador = operacion;
+            document.getElementById('lcd').value = '';
+            pantalla = '';
+        }
+        function calcular(){
+            numero2 = document.getElementById('lcd').value;
+            switch (operador) {
+                case 'suma':
+                    resultado = parseInt(numero1) + parseInt(numero2);
+                    document.getElementById('lcd').value = resultado;
+                    break;
+                case 'resta':
+                    resultado =numero1 - numero2;
+                    document.getElementById('lcd').value = resultado;
+					break;
+				case 'multiplicacion':
+					multiplicacion();
+					break;
+				case 'division':
+					division();
+					
+            }
+        }
+
+        function borrarPantalla(){
+            document.getElementById('lcd').value = '';
+            numero2 = 0;
+            numero1 = 0;
+            resultado = 0;
+            operador = '';
+            pantalla = '';
+        }
+
+
+        function sumar(){
+            resultado = parseInt(numero1) + parseInt(numero2);
+            document.getElementById('lcd').value = resultado;
+        }
+        function restar(){
+            resultado = parseInt(numero1) - parseInt(numero2);
+            document.getElementById('lcd').value = resultado;
+		}
+		function multiplicacion(){
+			resultado=numero1 * numero2;
+			document.getElementById(`lcd`).value = resultado;
+		}
+		function division(valor){
+			if (numero2 == 0) {
+				alert("NO EXISTE DIVISION POR CERO");
+			}else{
+				resultado=numero1 / numero2;
+				document.getElementById(`lcd`).value = resultado;
+			}
+			
+			
+		}
+        
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
